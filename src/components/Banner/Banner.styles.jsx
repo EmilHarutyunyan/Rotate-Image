@@ -1,22 +1,23 @@
 import styled from "styled-components";
 
 export const Wrapper = styled.div`
-  background: rgb(2, 0, 36);
-  background: linear-gradient(
-    90deg,
-    rgba(2, 0, 36, 1) 0%,
-    rgba(9, 9, 121, 1) 35%,
-    rgba(0, 212, 255, 1) 100%
-  );
-  background-size: 100% 220px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  background: #7474bf; /* fallback for old browsers */
+  background: -webkit-linear-gradient(to right, #7474bf, #348ac7);
+  background: linear-gradient(to right, #7474bf, #348ac7); 
+  background-size: 100% ;
   background-repeat: repeat-x;
   text-align: center;
-  padding: 95px 20px 20px 20px;
+  padding: 100px 20px;
 
   & > h1 {
+    font-size: 35px;
     color: #fff;
   }
   & > h2 {
+    font-size: 24px;
     color: #fff;
     margin-top: 5px;
   }

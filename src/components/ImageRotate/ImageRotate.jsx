@@ -1,33 +1,54 @@
 import React, { useRef, useState } from "react";
+import { v4 as uuid } from 'uuid';
+// Context
+import { useGlobalContext } from "../../context/CanvasContext";
 // Components
 import { Button } from "../Button";
-import { ImgPrw, RotateLeft, RotateRight } from "../Icons/Icons";
+import { Close, ImgPrw, RotateLeft, RotateRight } from "../Icons/Icons";
+import { Canvas } from "../Canvas";
 
 // Utils
-import { ImageCreate, readFileAsync } from "../../utils/utils";
+import { ImageCreate } from "../../utils/utils";
 // Styles
-import { Wrapper } from "./ImageRotate.styles";
-import { Canvas } from "../Canvas";
-import { useGlobalContext } from "../../context/CanvasContext";
+import {
+  CanvasWrapper,
+  Container,
+  DropZone,
+  DropZoneBackImg,
+  DropZoneInput,
+  RotateItem,
+  Setting,
+  Settings,
+  Wrapper,
+} from "./ImageRotate.styles";
 
 const initialState = {
   fileName: "",
   url: "",
   imageFile: "",
-}
+};
 const ImageRotate = () => {
   const [imageInfo, setImageInfo] = useState(initialState);
   const [rotateDeg, setRotateDeg] = useState(0);
   const { canvas } = useGlobalContext();
   const inpurRef = useRef(null);
 
-  function removeImage() {
-    inpurRef.current.value = "";
-    setImageInfo(initialState);
-  }
+  const handleDegree = (degrre) => {
+    if (Math.abs(rotateDeg + degrre) === 360) {
+      setRotateDeg(0);
+    } else {
+    setRotateDeg(rotateDeg + degrre);
+    }
+  };
+
   const handleUpload = () => {
     inpurRef.current.click();
   };
+  const removeImage = () => {
+    inpurRef.current.value = "";
+    setImageInfo(initialState);
+  }
+  
   async function uploadImg(e) {
     const file = e.target.files[0];
     // Create Url
@@ -41,31 +62,21 @@ const ImageRotate = () => {
       imageFile,
     });
   }
-  const handleDegree = (degrre) => {
-    let rotateDegree;
-    if (rotateDeg === 0) {
-      rotateDegree = 270;
-    } else {
-      rotateDegree = (rotateDeg + degrre) % 360;
-    }
-    setRotateDeg(rotateDegree);
-  };
-
+  // Downlaed Img
   const downloadCanvas = () => {
-    debugger;
     let link = document.createElement("a");
-    link.download = imageInfo.fileName;
+    link.download =  uuid();
+    console.log('imageInfo :', imageInfo);
     link.href = canvas.toDataURL("image/png");
     link.click();
   };
   return (
     <Wrapper>
-      <div className="rotate_container">
-        <div className="rotate_dropzone">
-          <div className="rotate_dropzone-content">
-            <div
-              className="rotate_dropzone-input"
-              style={imageInfo.image ? { display: "none" } : null}
+      <Container>
+        <RotateItem>
+          <DropZone>
+            <DropZoneInput
+              style={imageInfo.fileName ? { display: "none" } : null}
             >
               <label>
                 <input
@@ -80,35 +91,29 @@ const ImageRotate = () => {
                   disabled={imageInfo.image ? true : false}
                 />
               </label>
-
-              <span>Drag &amp; drop image here or</span>
               <ImgPrw />
               <Button
                 cssName="btn_blue"
                 text="Upload Image"
                 handleClick={handleUpload}
               />
-            </div>
-            <div
-              className="rotate_dropzone-canvas"
-              style={
-                imageInfo.url
-                  ? { backgroundImage: `url(${imageInfo.url})` }
-                  : null
-              }
-            ></div>
-            {imageInfo.imageFile ? (
-              <div className="canvas-wrapper">
-                {" "}
+            </DropZoneInput>
+            <DropZoneBackImg image={imageInfo.url} />
+            {imageInfo.imageFile && (
+              <CanvasWrapper>
                 <Canvas image={imageInfo.imageFile} degree={rotateDeg} />
-              </div>
-            ) : null}
-          </div>
-        </div>
-        <div className="rotate_setings">
-          <div className="rotate_setings-content">
+              </CanvasWrapper>
+            )}
+          </DropZone>
+        </RotateItem>
+        <RotateItem >
+          <Settings>
             <p>Rotate image</p>
-            <div className="buttons_rl">
+            {imageInfo.imageFile && (
+              <Close width="35" height="35" className='close-icon' onClick={removeImage}/>
+            )}
+           
+            <Setting>
               <Button
                 cssName="rotate"
                 logo={<RotateLeft />}
@@ -121,15 +126,15 @@ const ImageRotate = () => {
                 text="Rotate right"
                 handleClick={() => handleDegree(90)}
               />
-            </div>
+            </Setting>
             <Button
               cssName="btn_blue dow"
               text="Download"
               handleClick={downloadCanvas}
             />
-          </div>
-        </div>
-      </div>
+          </Settings>
+        </RotateItem>
+      </Container>
     </Wrapper>
   );
 };

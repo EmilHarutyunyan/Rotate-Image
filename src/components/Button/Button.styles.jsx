@@ -22,12 +22,12 @@ export const Wrapper = styled.button`
       opacity: 0.7;
     }
 
-    &.dow {
+    /* &.dow {
       position: absolute;
       bottom: 0;
       left: 10px;
       margin: 24px 0;
-    }
+    } */
   }
 
   &.rotate {

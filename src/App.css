@@ -2,25 +2,10 @@
   margin:0;
   padding:0;
   box-sizing: border-box;
+  font-family: 'Poppins', sans-serif;
 }
-input[type=number]::-webkit-inner-spin-button,
-input[type=number]::-webkit-outer-spin-button {
-  -webkit-appearance: none;
-  margin: 0;
-}
-.rotate_dropzone-canvas {
-  background-position: 50%;
-  background-size: 150%;
-  background-repeat: no-repeat;
-  border-radius: 8px;
-  filter: blur(3px);
-  width: 100%;
-  height: 100%;
-  position: absolute;
-  top: 0;
-  left: 0;
-  pointer-events: none;
-}
+
+
 .rotate_dropzone-content {
   display: flex;
   justify-content: center;
@@ -31,10 +16,7 @@ input[type=number]::-webkit-outer-spin-button {
   overflow: hidden;
 }
 .canvas-wrapper {
-  width: 100%;
-  height: 280px;
-  display: flex;
-  justify-content: center;
+  
 }
 canvas {
   max-width: 100%;
