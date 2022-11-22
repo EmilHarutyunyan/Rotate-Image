@@ -5,6 +5,7 @@ export const Wrapper = styled.div`
   max-width: 980px;
   margin: 0px auto;
   margin-top: -45px;
+  padding: 0 15px;
 `;
 
 export const Container = styled.div`
@@ -15,6 +16,10 @@ export const Container = styled.div`
   background: #f2f2f2;
   border: 1px solid #d7d7d7;
   border-radius: 16px;
+  flex-wrap: wrap;
+  @media only screen and (max-width: 900px) {
+   justify-content:center;
+  }
 `;
 
 export const RotateItem = styled.div`
@@ -30,7 +35,7 @@ export const DropZone = styled.div`
   text-align: center;
 `;
 export const DropZoneInput = styled.div`
-  margin-top: 80px;
+  margin-top: 93px;
 `;
 
 export const DropZoneBackImg = styled.div`
@@ -62,6 +67,12 @@ export const CanvasWrapper = styled.div`
   height: 280px;
   display: flex;
   justify-content: center;
+  canvas {
+    max-width: 100%;
+    max-height: 100%;
+    margin: auto 0;
+    z-index: 9;
+  }
 `;
 
 
@@ -83,7 +94,8 @@ export const Settings = styled.div`
 export const Setting = styled.div`
   display: flex;
   justify-content: center;
-  gap:30px
+  gap:30px;
+  flex-wrap: wrap;
 `;
 
 

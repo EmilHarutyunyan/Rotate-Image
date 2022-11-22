@@ -1,13 +1,14 @@
 
-import { Wrapper } from "./Button.styles";
+import { Btn } from "./Button.styles";
 import React from 'react'
 
-const Button = ({ cssName, logo, text, handleClick }) => {
+const Button = (props) => {
+  const { cssName, logo, text, handleClick } = props
   return (
-    <Wrapper className={cssName} onClick={handleClick}>
+    <Btn className={cssName} onClick={handleClick} {...props} >
       {logo}
       {text}
-    </Wrapper>
+    </Btn>
   );
 }
 

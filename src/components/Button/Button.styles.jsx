@@ -1,38 +1,39 @@
-import styled from "styled-components";
+import styled, { css } from "styled-components";
 
-export const Wrapper = styled.button`
+export const Btn = styled.button`
+  display: block;
   border: 0px;
   outline: 0px;
   background: transparent;
   cursor: pointer;
-  &.btn_blue {
-    font-size: 15px;
-    line-height: 28px;
-    max-width: 240px;
-    justify-content: center;
-    margin: 24px auto 0;
+  font-size: 16px;
+  max-width: 240px;
+  border-radius: 16px;
+
+  &:hover:not(:disabled) {
+		opacity: 0.8;
+	}
+	&:disabled {
+		opacity: 0.6;
+    filter: saturate(60%);
+  }
+  ${props => props.primary && css`
     color: #fff;
     background: #338fff;
-    display: flex;
-    align-items: center;
-    text-align: center;
-    border-radius: 16px;
-    padding: 6px 57px;
-    &:hover {
-      opacity: 0.7;
+    padding:10px 57px;
+    margin: 24px auto 0;
+    @media only screen and (max-width: 520px) {
+      padding:10px 15px;
     }
-
-    /* &.dow {
-      position: absolute;
-      bottom: 0;
-      left: 10px;
-      margin: 24px 0;
-    } */
-  }
-
-  &.rotate {
+  `}
+  ${props => props.icon && css`
     display: flex;
     align-items: center;
     column-gap: 20px;
-  }
+    padding:8px 15px;
+    background: transparent;
+    color: black;
+    border: 1px dashed #121212;
+    
+  `}
 `;

@@ -93,7 +93,7 @@ const ImageRotate = () => {
               </label>
               <ImgPrw />
               <Button
-                cssName="btn_blue"
+                primary
                 text="Upload Image"
                 handleClick={handleUpload}
               />
@@ -115,20 +115,20 @@ const ImageRotate = () => {
            
             <Setting>
               <Button
-                cssName="rotate"
+                icon
                 logo={<RotateLeft />}
                 text="Rotate Left"
                 handleClick={() => handleDegree(-90)}
               />
               <Button
-                cssName="rotate"
+                icon
                 logo={<RotateRight />}
-                text="Rotate right"
+                text="Rotate Right"
                 handleClick={() => handleDegree(90)}
               />
             </Setting>
             <Button
-              cssName="btn_blue dow"
+              primary
               text="Download"
               handleClick={downloadCanvas}
             />
