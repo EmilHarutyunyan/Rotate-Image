@@ -45,8 +45,10 @@ const ImageRotate = () => {
     inpurRef.current.click();
   };
   const removeImage = () => {
+    debugger
     inpurRef.current.value = "";
     setImageInfo(initialState);
+   
   }
   
   async function uploadImg(e) {
@@ -64,11 +66,14 @@ const ImageRotate = () => {
   }
   // Downlaed Img
   const downloadCanvas = () => {
-    let link = document.createElement("a");
-    link.download =  uuid();
-    console.log('imageInfo :', imageInfo);
-    link.href = canvas.toDataURL("image/png");
-    link.click();
+    if(imageInfo.imageFile) {
+      let link = document.createElement("a");
+      link.download =  uuid();
+      link.href = canvas.canvas.toDataURL("image/png");
+      link.click();
+    }
+
+    
   };
   return (
     <Wrapper>
@@ -92,11 +97,7 @@ const ImageRotate = () => {
                 />
               </label>
               <ImgPrw />
-              <Button
-                primary
-                text="Upload Image"
-                handleClick={handleUpload}
-              />
+              <Button primary text="Upload Image" handleClick={handleUpload} />
             </DropZoneInput>
             <DropZoneBackImg image={imageInfo.url} />
             {imageInfo.imageFile && (
@@ -106,28 +107,36 @@ const ImageRotate = () => {
             )}
           </DropZone>
         </RotateItem>
-        <RotateItem >
+        <RotateItem>
           <Settings>
             <p>Rotate image</p>
             {imageInfo.imageFile && (
-              <Close width="35" height="35" className='close-icon' onClick={removeImage}/>
+              <Close
+                width="35"
+                height="35"
+                className="close-icon"
+                onClick={removeImage}
+              />
             )}
-           
+
             <Setting>
               <Button
                 icon
                 logo={<RotateLeft />}
+                disabled={!imageInfo?.imageFile}
                 text="Rotate Left"
                 handleClick={() => handleDegree(-90)}
               />
               <Button
                 icon
                 logo={<RotateRight />}
+                disabled={!imageInfo?.imageFile}
                 text="Rotate Right"
                 handleClick={() => handleDegree(90)}
               />
             </Setting>
             <Button
+              disabled={!imageInfo?.imageFile}
               primary
               text="Download"
               handleClick={downloadCanvas}

@@ -1,6 +1,6 @@
 import { Wrapper } from "./Banner.styles";
 
-const Banner = ({ title = "Image Rotator", desc = "Rotate Image Onlin" }) => {
+const Banner = ({ title = "Image Rotator", desc = "Rotate Image Online" }) => {
   return (
     <Wrapper>
       <h1>{title}</h1>

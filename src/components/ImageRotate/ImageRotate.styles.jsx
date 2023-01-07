@@ -1,6 +1,5 @@
 import styled from "styled-components";
 
-
 export const Wrapper = styled.div`
   max-width: 980px;
   margin: 0px auto;
@@ -18,7 +17,7 @@ export const Container = styled.div`
   border-radius: 16px;
   flex-wrap: wrap;
   @media only screen and (max-width: 900px) {
-   justify-content:center;
+    justify-content: center;
   }
 `;
 
@@ -75,27 +74,23 @@ export const CanvasWrapper = styled.div`
   }
 `;
 
-
 export const Settings = styled.div`
-    position: relative;
-   
-    text-align: center;
-    p {
-      padding-top: 50px;
-      padding-bottom: 20px;
-    }
-    .close-icon {
-      position: absolute;
-      top: 5%;
-      right: 5%;
-      cursor: pointer;
-    }
-`
+  position: relative;
+  text-align: center;
+  p {
+    padding-top: 50px;
+    padding-bottom: 20px;
+  }
+  .close-icon {
+    position: absolute;
+    top: 5%;
+    right: 5%;
+    cursor: pointer;
+  }
+`;
 export const Setting = styled.div`
   display: flex;
   justify-content: center;
-  gap:30px;
+  gap: 30px;
   flex-wrap: wrap;
 `;
-
-

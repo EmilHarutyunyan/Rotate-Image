@@ -34,8 +34,8 @@ const Canvas = ({ image, degree, degreeCustom }) => {
   const drawRotated = (image, degree) => {
     const context = canvas.getContext("2d");
     let maxSize = {
-      width: image.n,
-      height: 600,
+      width: image.naturalWidth,
+      height: image.naturalHeight,
     };
     let newSize = determineSize(
       image.width,
