@@ -12,7 +12,7 @@ Rotate Image is a simple tool that lets users quickly rotate images by 90-degree
 
 ## Demo
 
-You can view a live demo of this project at: [https://example.com/rotate-image](https://example.com/rotate-image)
+You can view a live demo of this project at: [https://image-rotate.netlify.app/](https://image-rotate.netlify.app/)
 
 ## Installation
 
